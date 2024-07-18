@@ -5,6 +5,10 @@ import os
 from crewai import Agent, Task, Crew, Process
 from langchain_groq import ChatGroq
 from crewai_tools import SerperDevTool
+from datetime import datetime
+
+# Get the current timestamp
+timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
 
 
 load_dotenv()
@@ -37,8 +41,9 @@ llm = ChatGroq(
 
 #Tools
 serper_tool = SerperDevTool()
-#Agent
 
+topic:str = input("Enter the topic: ")
+#Agent
 #it will research the topic
 researcher_agent = Agent(
     role = "Research Analyst",
@@ -63,15 +68,15 @@ writer_agent = Agent(
 # Define tasks
 research_task = Task(
     description='Research the latest trends in the {topic} and provide a summary.',
-    expected_output='A summary of the top 3 trending developments in the {topic} with a unique perspective on their significance.',
+    expected_output='A summary of the top 2 trending developments in the {topic} with a unique perspective on their significance.',
     agent=researcher_agent
 )
 
 write_task = Task(
-    description='Write an engaging article about the {topic}, based on the research analyst’s summary. Draw inspiration from the latest blog posts in the directory.',
-    expected_output='A 4-paragraph article post formatted in markdown with engaging, informative, and accessible content, avoiding complex jargon.',
+    description='Write an engaging micro blog post about the {topic}, based on the research analyst’s summary.',
+    expected_output='A 2-paragraph micro blog post formatted in markdown with engaging, informative, and accessible content, avoiding complex jargon.',
     agent=writer_agent,
-    output_file='article-posts/{topic}.md'  # The final article post will be saved here
+    output_file=f'article-posts/{topic}_{timestamp}.md'  # The final article post will be saved here
 )
 
 
@@ -82,4 +87,4 @@ crew = Crew(
     verbose=True
 )
 
-result = crew.kickoff(inputs={"topic": "Tata Curvv Suv"})
+result = crew.kickoff(inputs={"topic": topic})
