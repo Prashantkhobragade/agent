@@ -74,9 +74,9 @@ research_task = Task(
 
 write_task = Task(
     description='Write an engaging micro blog post about the {topic}, based on the research analyst’s summary.',
-    expected_output='A 2-paragraph micro blog post formatted in markdown with engaging, informative, and accessible content, avoiding complex jargon.',
+    expected_output='A 2-paragraph micro blog post formatted in text with engaging, informative, and accessible content, avoiding complex jargon.',
     agent=writer_agent,
-    output_file=f'article-posts/{topic}_{timestamp}.md'  # The final article post will be saved here
+    output_file=f'article-posts/{topic}_{timestamp}.txt'  # The final article post will be saved here
 )
 
 
