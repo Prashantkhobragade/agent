@@ -82,4 +82,4 @@ crew = Crew(
     verbose=True
 )
 
-result = crew.kickoff(inputs={"topic": "Automobile Industry"})
+result = crew.kickoff(inputs={"topic": "Tata Curvv Suv"})
