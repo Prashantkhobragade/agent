@@ -26,7 +26,7 @@ except:
 try:
     SERPER_API_KEY = os.getenv("SERPER_API_KEY")
     if not SERPER_API_KEY:
-        raise ValueError("SERPER API KEYis not found")
+        raise ValueError("SERPER API KEY is not found")
 except:
     print("Error: Serper API key is not found")
 
@@ -43,6 +43,8 @@ llm = ChatGroq(
 serper_tool = SerperDevTool()
 
 topic:str = input("Enter the topic: ")
+
+
 #Agent
 #it will research the topic
 researcher_agent = Agent(
