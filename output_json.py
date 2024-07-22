@@ -30,7 +30,6 @@ need openai client and pydentic model
 
 
 
-
 llm = ChatGroq(
     model = "llama3-70b-8192",
     temperature = 0.0,
@@ -60,7 +59,7 @@ generate_json_task = Task(
     description='Process the provided {input_data} and generate a structured JSON output. Ensure that the output contains all necessary information and is formatted correctly. The response should only contains JSON',
     expected_output="A JSON object containing the processed data",
     agent=json_specialist,
-    #output_json = 
+    output_json = OpenAI()
 )
 
 # Form the crew and kick off the process
