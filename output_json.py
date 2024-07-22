@@ -9,6 +9,10 @@ from pydantic import BaseModel
 from openai import OpenAI
 from tools.tools import *
 
+class Person(BaseModel):
+    name: str
+    age: int
+
 
 load_dotenv()
 
@@ -20,7 +24,9 @@ try:
 except:
     print("Error: Groq API key is not found")
 
-
+"""
+need openai client and pydentic model
+"""
 
 
 
@@ -54,7 +60,7 @@ generate_json_task = Task(
     description='Process the provided {input_data} and generate a structured JSON output. Ensure that the output contains all necessary information and is formatted correctly. The response should only contains JSON',
     expected_output="A JSON object containing the processed data",
     agent=json_specialist,
-    #output = json
+    output_json = 
 )
 
 # Form the crew and kick off the process
@@ -67,14 +73,18 @@ crew = Crew(
 # Kick off the crew
 result = crew.kickoff(inputs=input)
 print(result)
+#print("Output Json ", result.json_dict)
+#print("Output pydantic", result.pydantic)
+print("Output pydantic_dict", result.to_dict())
 #print(json.dumps(generate_json_task.json_dict, indent=2))
 
 #Accessing the task output
 
-task_output = generate_json_task.output
-
-print(f"Raw Output: {task_output.raw}")
-if task_output.json_dict:
-    print(f"JSON Output : {json.dumps(task_output.json_dict, indent=2)}")
-if task_output.pydantic:
-    print(f"Pydantic Output : {task_output.pydantic}")
+#task_output = generate_json_task.output
+""""
+print(f"Raw Output: {result.raw}")
+if result.json_dict:
+    print(f"JSON Output : {json.dumps(result.json_dict, indent=2)}")
+if result.pydantic:
+    print(f"Pydantic Output : {result.pydantic}")
+"""
