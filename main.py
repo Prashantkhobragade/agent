@@ -53,6 +53,7 @@ researcher_agent = Agent(
     backstory = "An expert analyst with a keen eye for market trends.",
     tool = [serper_tool],
     llm = llm,
+    allow_delegation=False,
     verbose = True
 )
 
@@ -63,6 +64,7 @@ writer_agent = Agent(
     backstory = "A skilled writer with a passion for technology.",
     tool = [serper_tool],
     llm = llm,
+    allow_delegation=False,
     verbose = True
 )
 
